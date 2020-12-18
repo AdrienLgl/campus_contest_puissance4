@@ -1,0 +1,44 @@
+<head>
+    <link rel="stylesheet" href="assets/main.css">
+</head>
+<body>
+    <div id="container" class="none">
+        <div id="gameBoard"></div>
+        <div class="center">
+            <p class="legend"> Tour : <span id="move"></span></p>
+            <p class="legend"> Player Turn : <span id="player-turn"></span></p>
+            <button id="newGame">Reset</button>
+            <button id="returnMenu">Menu</button>
+        </div>
+        
+    </div>
+
+    <div id="menu">
+        <h1 class="titre">Bienvenue sur Puissance 4</h1>
+        <div class="btn_container">
+            <a href="#" onclick="new LaunchGame(1)">
+                <p><span class="bg"></span><span class="base"></span><span class="text">Solo</span></p>
+            </a>
+            <a class="white" href="#" onclick="new LaunchGame(2)">
+                <p><span class="bg"></span><span class="base"></span><span class="text">Duo</span></p>
+            </a>
+            <a class="transparent" href="#">
+                <p><span class="bg"></span><span class="base"></span><span class="text">Multijoueurs</span></p>
+            </a>
+        </div>
+        <div id="input" class="input-container none">
+            <input id="player1" class="input-player" value="Player 1" placeholder="Player 1"/>
+            <input id="player2" class="input-player" value="Player 2" placeholder="Player 2"/>
+            <div class="btn_container">
+                <a href="#" id="play">
+                    <p><span class="bg"></span><span class="base"></span><span class="text">Play</span></p>
+                </a>
+            </div>
+        </div>
+    </div>
+   
+</body>
+
+<script type="text/javascript" charset="utf8" src="gameplay/gameplay.js"></script>
+
+
