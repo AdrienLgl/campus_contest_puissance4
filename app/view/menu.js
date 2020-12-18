@@ -7,3 +7,5 @@ class Menu{
 }
 
 module.exports= Menu;
+
+//Exemple de module à exporter avec un serveur nodeJS

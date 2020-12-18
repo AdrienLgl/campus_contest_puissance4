@@ -181,6 +181,7 @@ div a:hover span.text:after {
     height: 40px;
     border-radius: 10px;
     padding: 10px;
+    margin-top: 2em;
 }
 
 .input-container{
@@ -196,4 +197,15 @@ div a:hover span.text:after {
 
 .center{
     text-align: center;
+}
+
+.score-container{
+    color: white;
+    width: 350px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+h3{
+    color: white;
 }

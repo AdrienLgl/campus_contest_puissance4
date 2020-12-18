@@ -82,7 +82,7 @@ class Gameplay{
         //Récupère la position de la colonne
         if(column){
             if(this.gameplay == "Duo"){ //Si gameplay 'Duo' alors tour à tour
-            if(this.turn === 1){
+            if(this.turn == 1){
                 this.turn = 2;
             }else{ 
                 this.turn = 1;
@@ -113,7 +113,6 @@ class Gameplay{
                 count = 0;
             }
             if(count >= 4){
-                console.log(2);
                 return true;
             }
         }
@@ -193,6 +192,8 @@ class Gameplay{
                   this.board[row][col] = 0;
               } 
           }
+          
+          this.createScoreTable(); //Créer le tableau des scores
           this.winner = null;
           this.moves = 0;
           this.render();
@@ -326,10 +327,33 @@ class Gameplay{
                 if (window.confirm("Bravo à "+this.winner + " Recommencez ?")) {
                     this.newGame();                  
                 }
-                console.log(this.score);   
             }
         }
       }
+
+
+    createScoreTable(){
+        var table = document.getElementById("score");
+        if(table.firstChild){
+          table.removeChild(table.firstChild);
+        }
+        let tabScore = document.createElement('table');
+        tabScore.classList.add('score-container');
+        let column = tabScore.appendChild(document.createElement('tr'));
+        column.appendChild(document.createElement('td')).innerHTML = 'Joueur';
+        column.appendChild(document.createElement('td')).innerHTML = 'Score';
+
+        for (let i = 0; i < this.score.length; i++) {
+            let trScore = tabScore.appendChild(document.createElement('tr'));
+            let tdPlayer = trScore.appendChild(document.createElement('td'));
+            let tdScore = trScore.appendChild(document.createElement('td'));
+            tdPlayer.innerHTML = this.score[i].player;
+            tdScore.innerHTML = this.score[i].score;
+        }
+
+      document.getElementById('score').appendChild(tabScore);
+
+    }
   
      
     
@@ -338,7 +362,7 @@ class Gameplay{
   class LaunchGame{
     //Définit les paramètres de la game (players & gameplay)
     constructor(gameplay){
-        if(gameplay === 1){
+        if(gameplay == 1){
             this.player1 = "Player 1";
             this.player2 = "Bot";
             document.getElementById('player2').classList.remove('block');
@@ -351,13 +375,12 @@ class Gameplay{
             this.player2 = "Player 2";
         }
         document.getElementById('input').classList.add('block');
-        this.play = document.getElementById('play').addEventListener('click', (event) => this.getPlayerName(gameplay));
-
+        document.getElementById('btn_play').addEventListener("click", (event) => this.getPlayerName(gameplay));
     }
 
 
     getPlayerName(gameplay){
-        if(gameplay === 1){
+        if(gameplay == 1){
             this.player1 = document.getElementById('player1').value;
             gameplay = "Bot";
         }else{
@@ -368,7 +391,8 @@ class Gameplay{
         var playersName = {player1:this.player1, player2:this.player2};
         document.getElementById('menu').classList.remove('block');
         document.getElementById('menu').classList.add('none');
-        let p4 = new Gameplay('#gameBoard', playersName, gameplay);
+        let game = new Gameplay('#gameBoard', playersName, gameplay);
+        game.newGame();
     }
 
 
@@ -377,8 +401,11 @@ class Gameplay{
 class Menu{
     //Créer le menu
     constructor(){
-        document.getElementById('container').classList.remove('block');
-        document.getElementById('menu').classList.add('block');
+        location.reload();
+
+        // Sans chargement mais avec un bug d'affichage pas résolu
+        // document.getElementById('container').classList.remove('block');
+        // document.getElementById('menu').classList.add('block');
     }
 }
 
